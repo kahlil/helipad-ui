@@ -123,9 +123,9 @@ function Home() {
               The dark theme is configured to be the inital color mode.
             </Text>
             <Text>
-              The <em>full arsenal</em> of Chakra UI's features and components
-              is at your disposal in this Next.js app and configurable to your
-              wishes.
+              The <em>full arsenal</em> of Chakra UI&apos;s features and
+              components is at your disposal in this Next.js app and
+              configurable to your wishes.
             </Text>
 
             <Text pb={2}>Oh, look! Chakra UI buttons:</Text>
