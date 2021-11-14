@@ -3,7 +3,6 @@ import {
   Heading,
   VStack,
   Stack,
-  Text,
   Code,
   OrderedList,
   ListItem,
