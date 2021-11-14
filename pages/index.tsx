@@ -20,25 +20,26 @@ import {
   Box,
   Divider,
   useColorMode,
-  Grid,
-  GridItem,
+  Center,
+  Square,
+  Text,
 } from '@chakra-ui/react'
 
 function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Container>
-      <Grid
-        h="200px"
-        templateRows="repeat(2, 1fr)"
-        templateColumns="repeat(5, 1fr)"
-        gap={4}
-      >
-        <GridItem rowSpan={2} colSpan={1} bg="tomato" />
-        <GridItem colSpan={2} bg="papayawhip" />
-        <GridItem colSpan={2} bg="papayawhip" />
-        <GridItem colSpan={4} bg="tomato" />
-      </Grid>
+      <Flex color="white">
+        <Center w="100px" bg="green.500">
+          <Text>Box 1</Text>
+        </Center>
+        <Square bg="blue.500" size="150px">
+          <Text>Box 2</Text>
+        </Square>
+        <Box flex="1" bg="tomato">
+          <Text>Box 3</Text>
+        </Box>
+      </Flex>
 
       <VStack my={24} spacing={12}>
         <Heading as="h1" fontSize="9xl" textAlign="center">
