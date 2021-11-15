@@ -1,5 +1,5 @@
 import { Container, Flex, Box, Center, Square, Text } from '@chakra-ui/react'
-import ThemeToggleButton from './components/ThemeToggleButton'
+import { ThemeToggleButton } from './components/ThemeToggleButton'
 
 function Home() {
   return (
@@ -15,7 +15,6 @@ function Home() {
           <Text>Box 3</Text>
         </Box>
       </Flex>
-
       <ThemeToggleButton />
     </Container>
   )
