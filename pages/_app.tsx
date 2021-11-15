@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
-
-import customTheme from '../chakra-ui/customTheme'
+import customTheme from './chakra-ui/customTheme'
 
 function App({ Component, pageProps }: AppProps) {
   return (
