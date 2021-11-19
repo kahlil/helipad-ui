@@ -4,10 +4,13 @@ import {
   Stack,
   Stat,
   StatHelpText,
-  StatLabel,
   StatNumber,
   Text,
   useColorMode,
+  AvatarBadge,
+  Button,
+  Flex,
+  Spacer,
 } from '@chakra-ui/react'
 import { Boostagram } from './Boostagram'
 
@@ -24,12 +27,16 @@ function Boost({
   via,
   podcast,
   boostagram,
+  compact = false,
+  unread = false,
 }: {
   amount: string
-  from: string
-  via: string
-  podcast: string
+  from?: string
+  via?: string
+  podcast?: string
   boostagram?: string
+  compact?: boolean
+  unread?: boolean
 }) {
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -51,30 +58,39 @@ function Boost({
       px={4}
       pt={4}
       pb={2}
-      boxShadow="md"
-      borderRadius="xl"
-      backgroundColor="white"
+      position="relative"
+      backgroundColor={colorMode === 'light' ? 'white' : 'gray.700'}
     >
       <Stack direction="row" spacing={4}>
-        <Avatar size="lg" name={via} src={podcastAppAvatar} />{' '}
+        <Avatar size={compact ? 'md' : 'lg'} name={via} src={podcastAppAvatar}>
+          {unread && !compact ? (
+            <AvatarBadge boxSize="1em" bg="blue.400" />
+          ) : null}
+        </Avatar>{' '}
         <Stat>
-          <StatLabel>{boostagram ? 'Boostagram' : 'Boost'}</StatLabel>
-          <StatNumber>
+          <StatNumber fontSize={compact ? 'lg' : 'xl'}>
             {amount} <i className="fak fa-satoshisymbol-solid"></i>
           </StatNumber>
-          <StatHelpText>
+          <StatHelpText fontSize={compact ? 'xs' : 'md'}>
             from <strong>{from}</strong> via <strong>{via}</strong> while
             listening to <strong>{podcast}</strong>
           </StatHelpText>
         </Stat>
       </Stack>
 
-      <Boostagram boostagram={boostagram} />
+      <Boostagram boostagram={boostagram} compact={compact} />
+
+      {unread && !compact ? (
+        <Flex>
+          <Spacer />
+          <Button size="sm">Mark as read</Button>
+        </Flex>
+      ) : null}
 
       <Text
         pt={2}
         fontSize="xs"
-        color={colorMode === 'light' ? 'gray.300' : 'gray.600'}
+        color={colorMode === 'light' ? 'gray.400' : 'gray.300'}
       >
         4 days ago
       </Text>

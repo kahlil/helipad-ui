@@ -1,11 +1,16 @@
 import { Box, Divider, Text } from '@chakra-ui/react'
 
-function Boostagram({ boostagram }: { boostagram?: string }) {
+function Boostagram({
+  boostagram,
+  compact,
+}: {
+  boostagram?: string
+  compact?: boolean
+}) {
   return boostagram ? (
     <>
-      <Divider mt={2} />
       <Box pt={4}>
-        <Text>{boostagram}</Text>
+        <Text fontSize={compact ? 'sm' : 'md'}>{boostagram}</Text>
       </Box>
     </>
   ) : null

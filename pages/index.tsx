@@ -6,85 +6,89 @@ import {
   Flex,
   Heading,
   Stack,
+  useColorMode,
 } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { Boost } from './components/Boost'
 import { ThemeToggleButton } from './components/ThemeToggleButton'
 
 function Home() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const [boosts, setBoosts] = useState<any>([])
+  useEffect(() => {
+    async function fetchBoosts() {
+      const response = await fetch('/api/boosts')
+      setBoosts(await response.json())
+    }
+    fetchBoosts()
+  }, [])
   return (
     <>
       <Box>
         <Container maxW="72rem">
           <Heading py={4} size="s">
-            Boostagram App
+            Boostagram
           </Heading>
         </Container>
         <Divider />
       </Box>
-      <Box backgroundColor="gray.100">
+      <Box backgroundColor={colorMode === 'light' ? 'gray.100' : 'transparent'}>
         <Container maxW="72rem">
           <Flex>
-            <Center pr={4}>
-              <Stack spacing={4} my={6}>
-                <Boost
-                  amount="1000"
-                  from="Dave"
-                  via="Podfriend"
-                  podcast="No Agenda"
-                />
-                <Boost
-                  amount="2500"
-                  from="Kahlil"
-                  via="Fountain"
-                  podcast="Podcasting 2.0"
-                  boostagram="Yo! Fauci boost 🎉"
-                />
-                <Boost
-                  amount="500.000"
-                  from="Anonymous"
-                  via="Podfriend"
-                  podcast="Podcasting 2.0"
-                  boostagram="Just testing the boostagram functionality. Hey Dave and Adan how did you actually meet?"
-                />
-                <Boost
-                  amount="1000"
-                  from="Anonymous"
-                  via="Fountain"
-                  podcast="No Agenda"
-                />
-                <Boost
-                  amount="7777"
-                  from="Jame Dennifer"
-                  via="Podfriend"
-                  podcast="Moe Factz with Adam Curry"
-                  boostagram="Running my Sphinx dry..."
-                />
+            <Center pr={8} width={400}>
+              <Stack spacing={0} my={4}>
+                <Heading fontWeight="normal" color="gray.500" size="xs" pb="4">
+                  Stream
+                </Heading>
+                {boosts.map((boost: any, index: number) => {
+                  return (
+                    <>
+                      <Boost
+                        key={index}
+                        amount={boost.amount}
+                        from={boost.from}
+                        via={boost.via}
+                        podcast={boost.podcast}
+                        boostagram={boost.boostagram}
+                        compact={true}
+                      />
+                      <Divider />
+                    </>
+                  )
+                })}
               </Stack>
             </Center>
             <Box>
-              <Stack spacing={4} my={6}>
-                <Boost
-                  amount="2500"
-                  from="Kahlil"
-                  via="Fountain"
-                  podcast="Podcasting 2.0"
-                  boostagram="Yo! Fauci boost 🎉"
-                />
-                <Boost
-                  amount="500.000"
-                  from="Anonymous"
-                  via="Podfriend"
-                  podcast="Podcasting 2.0"
-                  boostagram="Just testing the boostagram functionality. Hey Dave and Adan how did you actually meet?"
-                />
-
-                <Boost
-                  amount="7777"
-                  from="Jame Dennifer"
-                  via="Podfriend"
-                  podcast="Moe Factz with Adam Curry"
-                  boostagram="Running my Sphinx dry..."
-                />
+              <Stack spacing={0} my={4}>
+                <Heading fontWeight="normal" color="gray.500" size="xs" pb="4">
+                  Boostagram Inbox
+                </Heading>
+                <Box
+                  p={4}
+                  backgroundColor={
+                    colorMode == 'light' ? 'gray.200' : 'gray.600'
+                  }
+                >
+                  {boosts.map((boost: any, index: number) => {
+                    if (boost.boostagram) {
+                      return (
+                        <>
+                          <Boost
+                            key={index}
+                            amount={boost.amount}
+                            from={boost.from}
+                            via={boost.via}
+                            podcast={boost.podcast}
+                            boostagram={boost.boostagram}
+                            unread={boost.unread}
+                          />
+                          <Divider />
+                        </>
+                      )
+                    }
+                    return null
+                  })}
+                </Box>
               </Stack>
             </Box>
           </Flex>
