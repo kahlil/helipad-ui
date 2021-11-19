@@ -64,7 +64,7 @@ function Boost({
       <Stack direction="row" spacing={4}>
         <Avatar size={compact ? 'md' : 'lg'} name={via} src={podcastAppAvatar}>
           {unread && !compact ? (
-            <AvatarBadge boxSize="1em" bg="blue.400" />
+            <AvatarBadge boxSize="1em" bg="green.400" />
           ) : null}
         </Avatar>{' '}
         <Stat>
@@ -81,19 +81,28 @@ function Boost({
       <Boostagram boostagram={boostagram} compact={compact} />
 
       {unread && !compact ? (
-        <Flex>
+        <Flex pt={4}>
+          <Text
+            pt={2}
+            fontSize="xs"
+            color={colorMode === 'light' ? 'gray.400' : 'gray.500'}
+          >
+            4 days ago
+          </Text>
           <Spacer />
           <Button size="sm">Mark as read</Button>
         </Flex>
-      ) : null}
-
-      <Text
-        pt={2}
-        fontSize="xs"
-        color={colorMode === 'light' ? 'gray.400' : 'gray.300'}
-      >
-        4 days ago
-      </Text>
+      ) : (
+        <Flex pt={4}>
+          <Text
+            pt={2}
+            fontSize="xs"
+            color={colorMode === 'light' ? 'gray.400' : 'gray.500'}
+          >
+            4 days ago
+          </Text>
+        </Flex>
+      )}
     </Box>
   )
 }

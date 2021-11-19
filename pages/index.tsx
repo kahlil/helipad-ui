@@ -1,11 +1,13 @@
+import { MoonIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Center,
+  Button,
   Container,
   Divider,
   Flex,
   Heading,
   Stack,
+  Text,
   useColorMode,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
@@ -26,42 +28,57 @@ function Home() {
     <>
       <Box>
         <Container maxW="72rem">
-          <Heading py={4} size="s">
+          <Heading
+            mt={4}
+            mb={2}
+            size="md"
+            color={colorMode == 'light' ? 'gray.600' : 'gray.600'}
+          >
             Boostagram
           </Heading>
+          <Text
+            size="xs"
+            mb={4}
+            color={colorMode == 'light' ? 'gray.400' : 'gray.600'}
+          >
+            The offical Podcasting 2.0 Boostagram app for Umbrel
+          </Text>
         </Container>
         <Divider />
       </Box>
       <Box backgroundColor={colorMode === 'light' ? 'gray.100' : 'transparent'}>
         <Container maxW="72rem">
           <Flex>
-            <Center pr={8} width={400}>
-              <Stack spacing={0} my={4}>
-                <Heading fontWeight="normal" color="gray.500" size="xs" pb="4">
+            <Box pr={8} width={400}>
+              <Stack spacing={1} my={4}>
+                <Heading
+                  pb={1}
+                  color={colorMode == 'light' ? 'gray.400' : 'gray.600'}
+                >
                   Stream
                 </Heading>
                 {boosts.map((boost: any, index: number) => {
                   return (
-                    <>
-                      <Boost
-                        key={index}
-                        amount={boost.amount}
-                        from={boost.from}
-                        via={boost.via}
-                        podcast={boost.podcast}
-                        boostagram={boost.boostagram}
-                        compact={true}
-                      />
-                      <Divider />
-                    </>
+                    <Boost
+                      key={index}
+                      amount={boost.amount}
+                      from={boost.from}
+                      via={boost.via}
+                      podcast={boost.podcast}
+                      boostagram={boost.boostagram}
+                      compact={true}
+                    />
                   )
                 })}
               </Stack>
-            </Center>
+            </Box>
             <Box>
               <Stack spacing={0} my={4}>
-                <Heading fontWeight="normal" color="gray.500" size="xs" pb="4">
-                  Boostagram Inbox
+                <Heading
+                  pb={2}
+                  color={colorMode == 'light' ? 'gray.400' : 'gray.600'}
+                >
+                  Inbox
                 </Heading>
                 <Box
                   p={4}
@@ -69,25 +86,26 @@ function Home() {
                     colorMode == 'light' ? 'gray.200' : 'gray.600'
                   }
                 >
-                  {boosts.map((boost: any, index: number) => {
-                    if (boost.boostagram) {
-                      return (
-                        <>
-                          <Boost
-                            key={index}
-                            amount={boost.amount}
-                            from={boost.from}
-                            via={boost.via}
-                            podcast={boost.podcast}
-                            boostagram={boost.boostagram}
-                            unread={boost.unread}
-                          />
-                          <Divider />
-                        </>
-                      )
-                    }
-                    return null
-                  })}
+                  <Stack spacing={1}>
+                    {boosts.map((boost: any, index: number) => {
+                      if (boost.boostagram) {
+                        return (
+                          <>
+                            <Boost
+                              key={index}
+                              amount={boost.amount}
+                              from={boost.from}
+                              via={boost.via}
+                              podcast={boost.podcast}
+                              boostagram={boost.boostagram}
+                              unread={boost.unread}
+                            />
+                          </>
+                        )
+                      }
+                      return null
+                    })}
+                  </Stack>
                 </Box>
               </Stack>
             </Box>
