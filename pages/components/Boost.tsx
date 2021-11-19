@@ -3,13 +3,12 @@ import {
   Box,
   Stack,
   Stat,
+  StatHelpText,
   StatLabel,
   StatNumber,
-  StatHelpText,
-  Divider,
   Text,
+  useColorMode,
 } from '@chakra-ui/react'
-
 import { Boostagram } from './Boostagram'
 
 let podcastAppAvatar: string
@@ -32,6 +31,8 @@ function Boost({
   podcast: string
   boostagram?: string
 }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+
   switch (via) {
     case 'Podfriend':
       podcastAppAvatar = podFriendAvatar
@@ -46,7 +47,14 @@ function Boost({
   }
 
   return (
-    <Box p={4} border="1px solid" borderColor="gray.400" borderRadius="md">
+    <Box
+      px={4}
+      pt={4}
+      pb={2}
+      boxShadow="md"
+      borderRadius="xl"
+      backgroundColor="white"
+    >
       <Stack direction="row" spacing={4}>
         <Avatar size="lg" name={via} src={podcastAppAvatar} />{' '}
         <Stat>
@@ -62,6 +70,14 @@ function Boost({
       </Stack>
 
       <Boostagram boostagram={boostagram} />
+
+      <Text
+        pt={2}
+        fontSize="xs"
+        color={colorMode === 'light' ? 'gray.300' : 'gray.600'}
+      >
+        4 days ago
+      </Text>
     </Box>
   )
 }
