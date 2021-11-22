@@ -6,7 +6,10 @@ function normalizeBoostsData(boostsJSON: any) {
     try {
       tlvJSON = JSON.parse(boost.tlv)
     } catch (error) {
-      console.error('It looks like the TLV data could not be parsed as JSON.')
+      console.error({
+        message: 'It looks like the TLV data could not be parsed as JSON.',
+        error,
+      })
     }
     if (tlvJSON) {
       boost.value_msat = (tlvJSON.value_msat_total || boost.value_msat) / 1000
