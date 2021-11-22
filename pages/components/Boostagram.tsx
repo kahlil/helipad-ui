@@ -8,11 +8,9 @@ function Boostagram({
   compact?: boolean
 }) {
   return boostagram ? (
-    <>
-      <Box pt={4}>
-        <Text fontSize={compact ? 'sm' : 'md'}>{boostagram}</Text>
-      </Box>
-    </>
+    <Box pt={4}>
+      <Text fontSize={compact ? 'sm' : 'md'}>{boostagram}</Text>
+    </Box>
   ) : null
 }
 
