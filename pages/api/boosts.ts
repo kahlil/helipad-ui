@@ -8,7 +8,7 @@ type Data = {
 const boosts = [
   {
     index: 8233,
-    time: 1636558003,
+    time: 1637621415,
     value_msat: 132000,
     action: 2,
     sender: '@dave',
@@ -30,6 +30,7 @@ const boosts = [
     podcast: '',
     episode: '',
     tlv: '{"podcast":"The Law","feedID":1382222,"episode":"1. Life is a Gift from God","action":"stream","ts":60,"app_name":"CurioCaster","speed":1,"name":"Podcaster","url":"https://cart.sobr.org/bastiat/bastiatLawPodcast.xml","sender_id":"VudSW6JRZepnadTvHVEwYrAe"}',
+    unread: true,
   },
   {
     index: 8235,
@@ -42,6 +43,7 @@ const boosts = [
     podcast: '',
     episode: '',
     tlv: '{"podcast":"The Law","episode":"1. Life is a Gift from God","action":"boost","time":"00:00:15","feedID":"1382222","app_name":"Breez","value_msat_total":"123000","message":"Test from Breez. "}',
+    unread: true,
   },
   {
     index: 8236,

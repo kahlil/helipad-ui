@@ -12,16 +12,18 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { appAvatars } from '../data/appAvatars'
 import { Boostagram } from './Boostagram'
 
-let podcastAppAvatar: string
-
-const podFriendAvatar =
-  'https://pbs.twimg.com/profile_images/1307729215610068995/q3gdnuKS_400x400.jpg'
-const fountainAvatar =
-  'https://pbs.twimg.com/profile_images/1421531707635904517/PSFSQdmP_400x400.jpg'
+const Timestamp = ({ time, color }: { time: number; color: string }) => (
+  <Text pt={2} fontSize="xs" color={color}>
+    {formatDistanceToNow(time)} ago
+  </Text>
+)
 
 function Boost({
+  time,
   value_msat,
   sender,
   app,
@@ -30,6 +32,7 @@ function Boost({
   compact = false,
   unread = false,
 }: {
+  time: number
   value_msat: number
   sender?: string
   app?: string
@@ -41,23 +44,14 @@ function Boost({
   const bg = useColorModeValue('white', 'gray.700')
   const color = useColorModeValue('gray.400', 'gray.500')
 
-  switch (app) {
-    case 'Podfriend':
-      podcastAppAvatar = podFriendAvatar
-      break
-
-    case 'Fountain':
-      podcastAppAvatar = fountainAvatar
-      break
-
-    default:
-      break
-  }
-
   return (
     <Box px={4} pt={4} pb={2} position="relative" bg={bg}>
       <Stack direction="row" spacing={4}>
-        <Avatar size={compact ? 'md' : 'lg'} name={app} src={podcastAppAvatar}>
+        <Avatar
+          size={compact ? 'md' : 'lg'}
+          name={app}
+          src={app ? appAvatars[app] : undefined}
+        >
           {unread && !compact ? (
             <AvatarBadge boxSize="1em" bg="green.400" />
           ) : null}
@@ -77,17 +71,13 @@ function Boost({
 
       {unread && !compact ? (
         <Flex pt={4}>
-          <Text pt={2} fontSize="xs" color={color}>
-            4 days ago
-          </Text>
+          <Timestamp time={time} color={color} />
           <Spacer />
           <Button size="sm">Mark as read</Button>
         </Flex>
       ) : (
         <Flex pt={0}>
-          <Text pt={2} fontSize="xs" color={color}>
-            4 days ago
-          </Text>
+          <Timestamp time={time} color={color} />
         </Flex>
       )}
     </Box>
