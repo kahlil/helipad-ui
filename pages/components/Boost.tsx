@@ -1,16 +1,16 @@
 import {
   Avatar,
+  AvatarBadge,
   Box,
+  Button,
+  Flex,
+  Spacer,
   Stack,
   Stat,
   StatHelpText,
   StatNumber,
   Text,
-  useColorMode,
-  AvatarBadge,
-  Button,
-  Flex,
-  Spacer,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { Boostagram } from './Boostagram'
 
@@ -38,7 +38,8 @@ function Boost({
   compact?: boolean
   unread?: boolean
 }) {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const bg = useColorModeValue('white', 'gray.700')
+  const color = useColorModeValue('gray.400', 'gray.500')
 
   switch (app) {
     case 'Podfriend':
@@ -54,13 +55,7 @@ function Boost({
   }
 
   return (
-    <Box
-      px={4}
-      pt={4}
-      pb={2}
-      position="relative"
-      backgroundColor={colorMode === 'light' ? 'white' : 'gray.700'}
-    >
+    <Box px={4} pt={4} pb={2} position="relative" bg={bg}>
       <Stack direction="row" spacing={4}>
         <Avatar size={compact ? 'md' : 'lg'} name={app} src={podcastAppAvatar}>
           {unread && !compact ? (
@@ -82,11 +77,7 @@ function Boost({
 
       {unread && !compact ? (
         <Flex pt={4}>
-          <Text
-            pt={2}
-            fontSize="xs"
-            color={colorMode === 'light' ? 'gray.400' : 'gray.500'}
-          >
+          <Text pt={2} fontSize="xs" color={color}>
             4 days ago
           </Text>
           <Spacer />
@@ -94,11 +85,7 @@ function Boost({
         </Flex>
       ) : (
         <Flex pt={0}>
-          <Text
-            pt={2}
-            fontSize="xs"
-            color={colorMode === 'light' ? 'gray.400' : 'gray.500'}
-          >
+          <Text pt={2} fontSize="xs" color={color}>
             4 days ago
           </Text>
         </Flex>
