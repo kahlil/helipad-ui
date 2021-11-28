@@ -2,7 +2,7 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import customTheme from './chakra-ui-config/customTheme'
+import customTheme from '../chakra-ui-config/customTheme'
 
 function App({ Component, pageProps }: AppProps) {
   return (
