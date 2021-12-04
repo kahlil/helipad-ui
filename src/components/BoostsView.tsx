@@ -2,11 +2,11 @@ import { Box, Container, Flex, useColorModeValue } from '@chakra-ui/react'
 import { FC } from 'react'
 
 const BoostsView: FC = ({ children }) => {
-  const bg = useColorModeValue('gray.100', 'transparent')
+  const bg = useColorModeValue('gray.200', 'transparent')
   return (
     <Box bg={bg}>
       <Container maxW="72rem">
-        <Flex>{children}</Flex>
+        <Box display={{ md: 'flex' }}>{children}</Box>
       </Container>
     </Box>
   )
