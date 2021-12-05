@@ -1,6 +1,6 @@
 import {
   Box,
-  Center,
+  Button,
   Container,
   Divider,
   Flex,
@@ -10,10 +10,10 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react'
-import { DownloadIcon } from '@chakra-ui/icons'
+import { DownloadIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const Header = () => {
-  const { colorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Box>
       <Container maxW="72rem">
@@ -36,11 +36,29 @@ const Header = () => {
             </Text>
           </Box>
           <Spacer />
+
           <Box pb={4}>
-            <Link fontSize="md" href="/boosts.csv" download="boosts.csv">
-              <DownloadIcon mx="2px" /> Export CSV
+            <Link
+              fontSize="md"
+              href="/boosts.csv"
+              download="boosts.csv"
+              alt="Download boosts CSV"
+              title="Download boosts CSV"
+              _hover={{ opacity: 0.7 }}
+            >
+              <DownloadIcon mx="2px" />
             </Link>
           </Box>
+          <Button
+            size="sm"
+            mb={3}
+            ml={4}
+            variant="ghost"
+            onClick={toggleColorMode}
+            title="Toggle color mode"
+          >
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          </Button>
         </Flex>
       </Container>
       <Divider />
