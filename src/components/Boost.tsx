@@ -23,6 +23,7 @@ const Timestamp = ({ time, color }: { time: number; color: string }) => (
 )
 
 function Boost({
+  index,
   time,
   value_msat,
   sender,
@@ -31,7 +32,9 @@ function Boost({
   message,
   compact = false,
   unread = false,
+  onToggleUnread,
 }: {
+  index: number
   time: number
   value_msat: number
   sender?: string
@@ -40,6 +43,7 @@ function Boost({
   message?: string
   compact?: boolean
   unread?: boolean
+  onToggleUnread: () => void
 }) {
   const bg = useColorModeValue('white', 'gray.700')
   const color = useColorModeValue('gray.400', 'gray.500')
@@ -69,17 +73,20 @@ function Boost({
 
       <Boostagram boostagram={message} compact={compact} />
 
-      {unread && !compact ? (
+      {!compact ? (
         <Flex pt={4}>
           <Timestamp time={time} color={color} />
           <Spacer />
-          <Button size="sm">Mark as read</Button>
+          <Button size="sm" onClick={onToggleUnread}>
+            Mark as {unread ? 'read' : 'unread'}
+          </Button>
         </Flex>
-      ) : (
-        <Flex pt={0}>
+      ) : null}
+      {compact ? (
+        <Flex pt={4}>
           <Timestamp time={time} color={color} />
         </Flex>
-      )}
+      ) : null}
     </Box>
   )
 }

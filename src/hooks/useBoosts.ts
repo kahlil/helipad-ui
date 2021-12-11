@@ -34,7 +34,7 @@ function useBoosts() {
     }
     fetchBoosts()
   }, [])
-  return boosts
+  return [boosts, setBoosts]
 }
 
 export { useBoosts }

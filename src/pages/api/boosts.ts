@@ -74,7 +74,7 @@ const boosts = [
     podcast: 'Podcasting 2.0',
     message:
       'Just testing the boostagram functionality. Hey Dave and Adan how did you actually meet?',
-    unread: true,
+    unread: false,
     tlv: '{}',
   },
   {

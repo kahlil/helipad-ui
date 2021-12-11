@@ -4,7 +4,7 @@ import { Boost } from './Boost'
 const BoostStream = ({ boosts }: any) => {
   const color = useColorModeValue('gray.400', 'gray.600')
   return (
-    <Box pr={{ md: 8 }}>
+    <Box pr={{ md: 8 }} minWidth={{ md: 400 }}>
       <Box my={4}>
         <Heading pb={2} color={color}>
           Stream
